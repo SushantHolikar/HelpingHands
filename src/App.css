@@ -1,0 +1,46 @@
+.backgroundforbackground{
+    background-image: url("https://th.bing.com/th/id/OIP.W8apTKARTqVhmLzMCisNmAHaEs?pid=ImgDet&rs=1") !important;
+    background-color: red !important;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.modify{
+    min-width: 94px !important;
+    max-width: 94px !important;
+}
+.UserAvatarHeading{
+    display: flex;
+    gap: 0.5rem;
+}
+.UserAvatarHeading img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+.UserAvatarContent{
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.LogOutButton{
+    background-color:red;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.MuiTooltip-tooltip{
+    margin-top: -1rem;
+    background-color: green !important;
+}
+#footer{    margin-top: -0.5rem !important;
+    margin-bottom: -2.5rem !important;
+
+}
+.nav-link-active{
+    background-color: #ff8000;
+    color: white;
+}
