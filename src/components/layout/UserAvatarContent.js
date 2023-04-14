@@ -13,13 +13,13 @@ function UserAvatarContent({user}) {
   return (
     <div className='UserAvatarContent'>
         {localStorage.getItem("loggedInUser")&&<div className='UserAvatarHeading'>
-           <div>
+           <div classname='UserAvatarlogo'>
             <FaUserAlt/>
             </div> 
-            <div>
+            <div className='name'>
              {user?.name}
             </div>
-            <div >{user?.profileImage}</div>
+            <div className='image'>{user?.profileImage}</div>
 
         </div>}
         {localStorage.getItem("loggedInNgo")&& <div className='UserAvatarHeading'>
