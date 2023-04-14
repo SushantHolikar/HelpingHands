@@ -1,3 +1,1 @@
-git add .
-git commit -m "updated"
-git push -u origin master
+Preview : https://helpinghands-miniproject.netlify.app
