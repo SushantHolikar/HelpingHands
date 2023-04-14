@@ -6,7 +6,7 @@ import { hideLoading } from '../actions/loading'
 
 function Verify() {
     const {userId}=useParams()
-    const host="http://localhost:5000"
+    const host="https://helpinghands-backend.onrender.com"
     const [user,setUser]=useState(null)
     const navigate=useNavigate()
     const [message,setMessage]=useState("Your email verification is under progress")
