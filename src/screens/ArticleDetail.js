@@ -37,7 +37,7 @@ const ArticleDetail = ({
   }, []);
 
   const {postId}=useParams()
-  const host = "https://helpinghands-backend.onrender.com"
+  const host = "https://localhost:5000"
   const [rows, setRows] = useState(null)
   var rand=0
   useEffect(() => {

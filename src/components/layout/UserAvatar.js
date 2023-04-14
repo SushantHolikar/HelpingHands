@@ -22,7 +22,7 @@ export default function TriggersTooltips() {
   const handleTooltipOpen = () => {
     setOpen(true);
   };
-  const host="https://helpinghands-backend.onrender.com"
+  const host="https://localhost:5000"
   const [user,setUser]=useState(null)
   useEffect(()=>{      
       const getUserProfile=async (path)=>{

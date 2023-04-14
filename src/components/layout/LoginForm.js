@@ -21,7 +21,7 @@ import { Link, useNavigate } from "react-router-dom";
 //     if(localStorage.getItem('logggedInNgo')){
 //       navigate("/")
 //     }
-//     axios.post("https://helpinghands-backend.onrender.com/user/signin", {
+//     axios.post("https://localhost:5000/user/signin", {
 //       email: email,
 //       password: password,
 //     })
@@ -84,13 +84,13 @@ function App() {
     const handlePasswordChange = (e) => {
       setPassword(e.target.value);
     };
-    const host="https://helpinghands-backend.onrender.com"
+    const host="https://localhost:5000"
     const handleSubmit = () => {
       console.log("clicked")
       if(localStorage.getItem('loggedInNgo')){
         navigate("/")
       }
-      axios.post("https://helpinghands-backend.onrender.com/user/signin", {
+      axios.post("https://localhost:5000/user/signin", {
         email: email,
         password: password,
       })
