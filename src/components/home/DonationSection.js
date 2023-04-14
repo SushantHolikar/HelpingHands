@@ -63,7 +63,7 @@ const DonationCard = ({ donationcard }) => {
 
 const DonationSection = ({ donationcard, loading, totalcards }) => {
 
-  const host = "https://localhost:5000"
+  const host = "https://helpinghands-backend.onrender.com"
 
   const [rows, setRows] = useState(null)
   var rand=0

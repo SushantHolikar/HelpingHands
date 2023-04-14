@@ -14,14 +14,14 @@ import { Link, useNavigate } from "react-router-dom";
 //   const handlePasswordChange = (e) => {
 //     setPassword(e.target.value);
 //   };
-//   const host="https://localhost:5000"
+//   const host="https://helpinghands-backend.onrender.com"
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
 
 //     if(localStorage.getItem('logggedInNgo')){
 //       navigate("/")
 //     }
-//     axios.post("https://localhost:5000/user/signin", {
+//     axios.post("https://helpinghands-backend.onrender.com/user/signin", {
 //       email: email,
 //       password: password,
 //     })
@@ -84,13 +84,13 @@ function App() {
     const handlePasswordChange = (e) => {
       setPassword(e.target.value);
     };
-    const host="https://localhost:5000"
+    const host="https://helpinghands-backend.onrender.com"
     const handleSubmit = () => {
   
       if(localStorage.getItem('loggedInUser')){
         navigate("/")
       }
-      axios.post("https://localhost:5000/donor/signin", {
+      axios.post("https://helpinghands-backend.onrender.com/donor/signin", {
         email: email,
         password: password,
       })

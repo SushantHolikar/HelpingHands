@@ -30,7 +30,7 @@ import { Link, useNavigate } from "react-router-dom";
 //     e.preventDefault();
 //     // Here you can add your register logic
 
-//     axios.post("https://localhost:5000/user/signup", {
+//     axios.post("https://helpinghands-backend.onrender.com/user/signup", {
 //       email: email,
 //       password: password,
 //       name: name,
@@ -130,7 +130,7 @@ function App() {
   const handleSubmit = () => {
     // Here you can add your register logic
 
-    axios.post("https://localhost:5000/user/signup", {
+    axios.post("https://helpinghands-backend.onrender.com/user/signup", {
       email: email,
       password: password,
       name: name,

@@ -32,7 +32,7 @@ const EventDetail = ({ dispatch, event, loading }) => {
     return `${month}/${day}`;
   }
   const {eventId}=useParams()
-  const host = "https://localhost:5000"
+  const host = "https://helpinghands-backend.onrender.com"
   const [rows, setRows] = useState(null)
   var rand=0
   useEffect(() => {
