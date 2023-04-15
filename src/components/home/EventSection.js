@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { formatDate } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
- 
 
+    const formatDate = (time) => {
+      const [timePart, datePart] = time.split(' ');
+      const [day, month, year] = datePart.split(' ');
+      const formattedDate = `${day}${day === '1' || day === '21' || day === '31' ? 'st' : day === '2' || day === '22' ? 'nd' : day === '3' || day === '23' ? 'rd' : 'th'} ${month}`;
+      return { formattedDate: datePart, formattedTime: timePart };
+    }
+    
+    function getDateAndMonth(dateStr) {
+      const date = new Date(dateStr);
+      const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+      const day = date.getDate();
+      return `${day} ${month}`;
+    }
+    
 
-  // const separteDateMonth = (datemonth) => {
-  //   const returnedDate = formatDate(event?.date, "short");
-  //   const dateMontArr = returnedDate.split(" ");
-  //   return datemonth === "date" ? dateMontArr[1] : dateMontArr[0];
-  // };
-
-
+  const { formattedDate, formattedTime } = formatDate(event.time);
+  
 
   return (
     <div className="col-lg-4 col-md-12 mb-5">
@@ -21,18 +28,17 @@ const EventCard = ({ event }) => {
           <div className="img-container position-relative">
             <img src={event.image} alt="https://th.bing.com/th/id/OIP.se6duPKpArNz0YnywnnYHQHaHa?w=158&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7" style={{"height":"20rem"}} />
             <div className="category-date-container text-center px-4 py-3 position-absolute top-0 rounded-border">
-              <p>{("date")}</p>
-              <p>{("month")}</p>
+              <p>{getDateAndMonth(event?.time)}</p>
             </div>
           </div>
           <div className="content-container p-5">
             <h4>{event?.title}</h4>
             <div className="time-place-container">
               <p>
-                <i className="fa-solid fa-clock"></i> {event?.time}
+                <i className="fa-solid fa-clock" style={{paddingRight:"0.5rem", paddingTop:"1rem"}}></i>{(formattedTime)} {(formattedDate)}
               </p>
               <p>
-                <i className="fa-solid fa-location-dot"></i> {event?.location}
+                <i className="fa-solid fa-location-dot" style={{paddingRight:"0.5rem"}}></i> {event?.location}
               </p>
             </div>
           </div>

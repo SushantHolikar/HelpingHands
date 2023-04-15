@@ -19,18 +19,23 @@ const EventDetail = ({ dispatch, event, loading }) => {
     dispatch(getEventData());
   }, []);
   
-  // const separteDateMonth = (datemonth) => {
-  //   const returnedDate = formatDate(event?.date, "short");
-  //   const dateMontArr = returnedDate.split(" ");
-  //   return datemonth === "date" ? dateMontArr[1] : dateMontArr[0];
-  // };
+ 
   
   function getDateAndMonth(dateStr) {
     const date = new Date(dateStr);
-    const month = date.getMonth() + 1;
+    const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
     const day = date.getDate();
-    return `${month}/${day}`;
+    return `${day} ${month}`;
   }
+
+  function getTime(dateStr) {
+    const dateTimeParts = dateStr.split(" ");
+    const time = dateTimeParts[0]; // Extract the time part (e.g., "9:00")
+    const meridiem = dateTimeParts[1]; // Extract the meridiem part (e.g., "pm")
+    return `${time} ${meridiem}`;
+  }
+  
+  
   const {eventId}=useParams()
   const host = "https://helpinghands-backend.onrender.com"
   const [rows, setRows] = useState(null)
@@ -70,7 +75,7 @@ const EventDetail = ({ dispatch, event, loading }) => {
                 <div className="category-date-container text-center px-lg-4 py-lg-3 px-3 py-2 position-absolute top-0 rounded-border">
                   {/* <p>{separteDateMonth("date")}</p>
                   <p>{separteDateMonth("month")}</p> */}
-                  {getDateAndMonth( rows.date)}
+                  {getDateAndMonth( rows.time)}
                 </div>
               </div>
             </div>
@@ -93,12 +98,12 @@ const EventDetail = ({ dispatch, event, loading }) => {
                   <ul>
                     <li className="event-info-list">
                       <p>
-                        Time: <span>{ rows?.time}</span>
+                        Time: <span>{getTime(rows?.time)}</span>
                       </p>
                     </li>
                     <li className="event-info-list">
                       <p>
-                        Date: <span>{formatDate(rows?.date, "long")}</span>
+                        Date: <span>{getDateAndMonth(rows?.time)} 2023</span>
                       </p>
                     </li>
                     <li className="event-info-list">

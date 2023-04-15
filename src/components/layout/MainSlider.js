@@ -66,9 +66,9 @@ const MainSlider = () => {
               <p className="custom-para mb-3">
               Climate change is not just an environmental issue, but a human issue, affecting health, security, and economic well-being.
               </p>
-              <button className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1">
+              {/* <button className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1">
                 Discover More
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="slider-container position-relative">
@@ -84,9 +84,9 @@ const MainSlider = () => {
               <p className="custom-para mb-3">
               The health of our oceans is inextricably linked to the health of our planet, and pollution and climate change are threatening
               </p>
-              <button className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1">
+              {/* <button className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1">
                 Discover More
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="slider-container position-relative">
@@ -100,9 +100,9 @@ const MainSlider = () => {
               <p className="custom-para mb-3">
               We can create a better world for ourselves and future generations by lifting others up and working together towards common goals.
               </p>
-              <button className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1">
+              {/* <button className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1">
                 Discover More
-              </button>
+              </button> */}
             </div>
           </div>
         </Slider>

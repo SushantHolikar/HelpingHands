@@ -14,11 +14,11 @@ const SupportSection = () => {
                             as a <span> NGO </span> in total
                         </h3>
 
-                        <button
+                        {/* <button
                             className="btn action-btn rounded-pill px-md-5 py-md-3 px-sm-3 py-sm-1"
                         >
                             Discover More
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>

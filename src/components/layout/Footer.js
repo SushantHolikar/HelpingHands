@@ -1,6 +1,25 @@
 import React from "react";
 
 const Footer = () => {
+  const handleEmailClick = () => {
+    window.location.href = "mailto:helpinghandsorg711@gmail.com";
+  };
+  const handlePhoneClick = () => {
+    window.location.href = "tel:+911245367778";
+  };
+
+  const handleEmailClickEvent = () => {
+    const encodedSubject = encodeURIComponent("To inform about a new event and its details");
+    window.location.href = `mailto:helpinghandsorg711@gmail.com?subject=${encodedSubject}`;
+  };
+const handleEmailClickCampaign = () => {
+  const encodedSubject = encodeURIComponent("To inform about a new campaign and its details");
+  window.location.href = `mailto:helpinghandsorg711@gmail.com?subject=${encodedSubject}`;
+};
+const handleEmailClickArticle = () => {
+  const encodedSubject = encodeURIComponent("To inform about a new article and its details");
+  window.location.href = `mailto:helpinghandsorg711@gmail.com?subject=${encodedSubject}`;
+};
   return (
     <footer id="footer" className="mt-5">
     
@@ -18,20 +37,18 @@ const Footer = () => {
                     <span className="icon-container d-flex align-items-center justify-content-center me-3">
                       <i className="fa-solid fa-heart"></i>
                     </span>
-                    <span> <a href="https://donate.stripe.com/test_fZebMzbktc3CgcU5kl" className="text-container"> donate now  </a></span>
+                    <span> <a href="https://donate.stripe.com/test_fZebMzbktc3CgcU5kl" className="text-container" style={{color:"white"}}> donate now  </a></span>
                   </span>
                 </button>
               </div>
             </div>
             <div className="col-md-6 col-lg-2 mb-4">
               <div className="links">
-                <h4>Links</h4>
+                <h4>Feel free to inform us about</h4>
                 <ul className="p-0">
-                  <li>Featured Causes</li>
-                  <li>About us</li>
-                  <li>Campaign</li>
-                  <li>Events</li>
-                  <li>Blogs</li>
+                  <li onClick={handleEmailClickEvent} style={{ cursor: "pointer" }}> Events</li>
+                  <li onClick={handleEmailClickCampaign} style={{ cursor: "pointer" }}>Campaign</li>
+                  <li onClick={handleEmailClickArticle} style={{ cursor: "pointer" }}> Article</li>
                 </ul>
               </div>
             </div>
@@ -51,13 +68,13 @@ const Footer = () => {
               <div className="contact">
                 <h4>Contact</h4>
                 <ul className="p-0">
-                  <li>
-                    <i className="fa-solid fa-envelope"></i>
-                    helpinghands@organization.com
-                  </li>
-                  <li>
-                    <i className="fa-solid fa-phone"></i> +91 5791348620
-                  </li>
+                <li onClick={handleEmailClick} style={{ cursor: "pointer" }}>
+              <i className="fa-solid fa-envelope"></i>
+              helpinghandsorg711@gmail.com
+            </li>
+            <li onClick={handlePhoneClick} style={{ cursor: "pointer" }}>
+              <i className="fa-solid fa-phone"></i> +91 1245367778
+            </li>
                   <li>
                     <i className="fa-solid fa-location-dot"></i>
                     Building 23, Ahmamau , Lucknow

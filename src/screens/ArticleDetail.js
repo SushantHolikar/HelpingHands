@@ -64,7 +64,7 @@ const ArticleDetail = ({
   } else {
     return (
       <section id="donate">
-        <div className="container my-5">
+        {rows&&<div className="container my-5">
           <div className="row">
             <div className="col-md-7 col-lg-8">
               <div className="card-container mb-5">
@@ -99,7 +99,7 @@ const ArticleDetail = ({
               <SocialIconsContainer page="Articles" />
             </div>
           </div>
-        </div>
+        </div>}
       </section>
     );
   }
