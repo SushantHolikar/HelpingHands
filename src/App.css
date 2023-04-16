@@ -11,52 +11,134 @@
     min-width: 94px !important;
     max-width: 94px !important;
 }
-.UserAvatarContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  background: color #1f1f1f;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.UserAvatarHeading {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.UserAvatarlogo {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-.name {
-  font-size: 1.2rem;
-}
-
-.image {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: #808080;
-}
-
-.LogOutButton {
-  margin-top: 1rem;
-  cursor: pointer;
-  color: #007bff;
-}
-
-.LogOutButton:hover {
-  text-decoration: underline;
-}
 
 .MuiTooltip-tooltip{
     margin-top: -1rem;
-    background-color: green !important;
+    background-color: #FF8000 !important;
 }
 #footer{    margin-top: -0.5rem !important;
     margin-bottom: -2.5rem !important;
 
+}
+/* .nav-link-active{
+    background-color: #ff8000;
+    color: white;
+} */
+
+.UserAvatarContent {
+  width: 220px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* .UserAvatarHeading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+} */
+
+/* 
+.image {
+  flex-grow: 1;
+} */
+
+
+.createButton {
+  margin-top: 2rem;
+  background-color: #007bff;
+  text-align: center;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.createButton:hover {
+  background-color: #0056b3;
+}
+
+
+.UserAvatarContent::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+.UserAvatarContent::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+}
+
+.LogOutButton {
+  margin-top: 2rem;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #606060;
+}
+
+.LogOutButton:hover {
+  color: #ff0000;
+  cursor: pointer;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative; /* add position relative */
+}
+
+.image:after {
+  content: "";
+  display: block;
+  width: 250%;
+  height: 1px;
+  background-color: #000000; /* set the desired color for the horizontal line */
+  position: absolute; /* change position to absolute */
+  bottom: -0.5rem; /* position the horizontal line at the bottom of the .image element */
+}
+
+
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px; /* changed from margin-bottom to margin-top */
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 2rem;
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px; /* changed from margin-bottom to margin-top */
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 2rem;
 }

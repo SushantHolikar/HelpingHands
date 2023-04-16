@@ -71,7 +71,7 @@ export default function TriggersTooltips() {
                 disableTouchListener
                 title=<UserAvatarContent user={user}/>
               >
-                <Button onClick={handleTooltipOpen} >      <Avatar alt="Cindy Baker" src={user?.profileImage} />
+                <Button onClick={handleTooltipOpen} >      <Avatar alt="NO IMG" src={user?.profileImage} />
 </Button>
               </Tooltip>
             </div>

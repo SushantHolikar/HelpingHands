@@ -1,6 +1,6 @@
 import React from "react";
 import CountUp from "react-countup";
-const ProgressBar = ({ percentage }) => {
+const ProgressBar2 = ({ percentage }) => {
   console.log("percentage ", percentage);
   const ref = React.useRef(null);
   const percent = percentage / 100;
@@ -62,4 +62,4 @@ const ProgressBar = ({ percentage }) => {
   );
 };
 
-export default ProgressBar;
+export default ProgressBar2;

@@ -16,6 +16,23 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp;
 };
 
+function convertToDateString(dateTimeString) {
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  
+  const date = new Date(dateTimeString);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  
+  return `${day} ${month}`;
+}
+
+const dateTimeString = "2023-04-07T11:05:20.307Z";
+const dateOnlyString = convertToDateString(dateTimeString);
+console.log(dateOnlyString); // Output: "7 April"
+
 
 
 const DonateDetail = ({ donation, loading, dispatch }) => {
@@ -54,12 +71,12 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
     return (
       <section id="donate">
         <div className="container my-5">
-          <ScrollAnimation
-            animateIn="flipInX"
-            afterAnimatedIn={() =>
-              setPercentage((rows?.currentFund / rows?.goalFund) * 100)
-            }
-          >
+            <ScrollAnimation
+              animateIn="flipInX"
+              afterAnimatedIn={() =>
+                setPercentage((rows?.currentFund / rows?.goalFund) * 100)
+              }
+            >
             <div className="row">
               <div className="col-md-7 col-lg-8">
                 <div className="card-container mb-5">
@@ -142,7 +159,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
                             <p>
                               Created:{" "}
                               <span>
-                                {rows?.date}
+                              {convertToDateString(rows?.date)}
                               </span>
                             </p>
                           </li>
