@@ -16,8 +16,9 @@ import VerifyDonor from "./screens/VerifyDonor";
 import Map from "./components/layout/Map";
 import LoginFormUser from "./components/layout/LoginFormUser";
 import RegisterFormUser from "./components/layout/RegisterFormUser";
-import "./App.css"
+import CreateDonation from "./components/layout/CreateDonation"
 
+import "./App.css"
 function App() {
   return (
     <>
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/loginUser" element={<LoginFormUser />} />
+        <Route path="/createdonation" element={<CreateDonation/>} />
         <Route path="/registerUser" element={<RegisterFormUser/>} />
         <Route path="/user/verify/:userId" element={<Verify Footer={<Footer/>} />} />
         <Route path="/donor/verifydonor/:donorId" element={<VerifyDonor Footer={<Footer/>} />} />

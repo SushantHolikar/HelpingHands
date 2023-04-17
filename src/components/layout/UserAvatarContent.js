@@ -1,21 +1,19 @@
 import React,{useState,useEffect} from 'react'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {FaUserAlt } from 'react-icons/fa'
 import {GrOrganization } from 'react-icons/gr'
 import Avatar from '@mui/material/Avatar';
-import { Navigate } from 'react-router-dom'
 
 
 function UserAvatarContent({user}) {
+  const navigate = useNavigate()
 
     const handleLogOut=()=>{
         localStorage.clear()
         window.location.reload()
         }
-       
-
         const handleCreate=()=>{
-
+          navigate("/createdonation")
         }
     
   return (

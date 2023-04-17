@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,50 +19,50 @@ import { fontGrid } from "@mui/material/styles/cssUtils";
 
 function App() {
 
+  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
   const handleback = () => {
     navigate("/")
   };
 
-  const navigate=useNavigate()
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    const handleEmailChange = (e) => {
-      setEmail(e.target.value);
-    };
-  
-    const handlePasswordChange = (e) => {
-      setPassword(e.target.value);
-    };
-    const host="https://helpinghands-backend.onrender.com"
-    const handleSubmit = () => {
-  
-      if(localStorage.getItem('loggedInUser')){
-        navigate("/")
-      }
-      axios.post("https://helpinghands-backend.onrender.com/donor/signin", {
-        email: email,
-        password: password,
-      })
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const host = "https://helpinghands-backend.onrender.com"
+  const handleSubmit = () => {
+    console.log("clicked")
+    if (localStorage.getItem('loggedInNgo')) {
+      navigate("/")
+    }
+    axios.post("https://helpinghands-backend.onrender.com/user/signin", {
+      email: email,
+      password: password,
+    })
       .then((response) => {
-        if(response.data.status==="SUCCESS"){
-          console.log(response)
-          localStorage.setItem('loggedInUser',true)
-          localStorage.setItem('email',email)
+        console.log(response)
+        if (response.data.status === "SUCCESS") {
+          localStorage.setItem('loggedInNgo', true)
+          localStorage.setItem('email', email)
           navigate("/")
         }
-        else{
-            alert(response.data.message)
+        else {
+          alert(response.data.message)
         }
       })
       .catch((error) => {
-        console.log(error);
         alert(error.data.message)
+        console.log(error);
       });
-  
-  
-    };
-  
+      
+
+  };
+
   return (
     <div >
 
@@ -94,13 +93,13 @@ function App() {
 
               <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4' >
               <div className="form-column">
-                <h3 className="fw-normal mb-3 ps-5 pb-3" style={{ letterSpacing: '1px', fontSize: '35px' }} >User Login</h3>
+                <h3 className="fw-normal mb-3 ps-5 pb-3" style={{ letterSpacing: '1px', fontSize: '35px' }} >NGO Login</h3>
 
 
                 <MDBInput wrapperClass='mb-4 mx-5 w-75' label='Email address' id='formControlLg' type='email' onChange={handleEmailChange} required size="lg" />
                 <MDBInput wrapperClass='mb-4 mx-5 w-75' label='Password' id='formControlLg' type='password' onChange={handlePasswordChange} required size="lg" />
                 <MDBBtn className="mb-4 px-5 mx-5 w-50" color='info' size='lg' onClick={handleSubmit}>Login</MDBBtn>
-                <p className='ms-5'>Don't have an account? <a href="#!" class="link-info"><Link to="/registerUser">Register</Link></a></p>
+                <p className='ms-5'>Don't have an account? <a href="#!" class="link-info"><Link to="/register">Register</Link></a></p>
               </div>
             </div>
             </div>
@@ -108,7 +107,7 @@ function App() {
           
           <div className="image-column"> 
           <MDBCol sm='6' className='d-none d-sm-block px-0'>
-            <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=626&ext=jpg&ga=GA1.2.1697258466.1677494383&semt=sph" alt="Login image" className="w-125" 
+            <img src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37336.jpg?w=740&t=st=1681558380~exp=1681558980~hmac=a646258d3968d2743d6fc1dd5589033eb8350d7b3558de58cacfb74811f52eda" alt="Login image" className="w-125" 
             style={{alignContent:'flex-end' ,height:'31rem', width:'25rem'}}/>
           </MDBCol>
           </div>

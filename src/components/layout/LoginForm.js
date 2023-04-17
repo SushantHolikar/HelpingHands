@@ -70,7 +70,7 @@ function App() {
 
       
  
-      <div className='d-flex flex-row ps-5 pt-5' style={{marginLeft:'10rem'}}>
+      <div className='d-flex flex-row ps-5 pt-5'>
         <div style={{ fontSize: "35px" , paddingRight: "10px" }}>
           <FontAwesomeIcon icon={faHandshakeAlt} className="navbar-brand-2" style={{ color: '#FF8000' }} > </FontAwesomeIcon>
         </div>
