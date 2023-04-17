@@ -1,66 +1,10 @@
+
+
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-// const LoginForm = () => {
-//   const navigate=useNavigate()
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleEmailChange = (e) => {
-//     setEmail(e.target.value);
-//   };
-
-//   const handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//   };
-//   const host="https://helpinghands-backend.onrender.com"
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     if(localStorage.getItem('logggedInNgo')){
-//       navigate("/")
-//     }
-//     axios.post("https://helpinghands-backend.onrender.com/user/signin", {
-//       email: email,
-//       password: password,
-//     })
-//     .then((response) => {
-//         console.log(response)
-//         localStorage.setItem('loggedInNgo',true)
-//         navigate("/")
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-
-
-//     // Here you can add your login logic
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <h2>Login</h2>
-//       <div>
-//         <label>Email:</label>
-//         <input type="email" value={email} onChange={handleEmailChange} required />
-//       </div>
-//       <div>
-//         <label>Password:</label>
-//         <input type="password" value={password} onChange={handlePasswordChange} required />
-//       </div>
-//       <button type="submit">Login</button>
-//       <div>
-//         Don't have an account? <Link to="/register">Register</Link>
-//       </div>
-//     </form>
-//   );
-// };
-
-// export default LoginForm;
-
-
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHandshakeAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   MDBBtn,
   MDBContainer,
@@ -69,81 +13,111 @@ import {
   MDBIcon,
   MDBInput
 }
-from 'mdb-react-ui-kit';
+  from 'mdb-react-ui-kit';
+
+import { Scale } from "@mui/icons-material";
+import shadows from "@mui/material/styles/shadows";
+import { fontGrid } from "@mui/material/styles/cssUtils";
 
 function App() {
 
-    const navigate=useNavigate()
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   
-    const handleEmailChange = (e) => {
-      setEmail(e.target.value);
-    };
-  
-    const handlePasswordChange = (e) => {
-      setPassword(e.target.value);
-    };
-    const host="https://helpinghands-backend.onrender.com"
-    const handleSubmit = () => {
-      console.log("clicked")
-      if(localStorage.getItem('loggedInNgo')){
-        navigate("/")
-      }
-      axios.post("https://helpinghands-backend.onrender.com/user/signin", {
-        email: email,
-        password: password,
-      })
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleback = () => {
+    navigate("/")
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const host = "https://helpinghands-backend.onrender.com"
+  const handleSubmit = () => {
+    console.log("clicked")
+    if (localStorage.getItem('loggedInNgo')) {
+      navigate("/")
+    }
+    axios.post("https://helpinghands-backend.onrender.com/user/signin", {
+      email: email,
+      password: password,
+    })
       .then((response) => {
-          console.log(response)
-          if(response.data.status==="SUCCESS"){
-          localStorage.setItem('loggedInNgo',true)
-          localStorage.setItem('email',email)
+        console.log(response)
+        if (response.data.status === "SUCCESS") {
+          localStorage.setItem('loggedInNgo', true)
+          localStorage.setItem('email', email)
           navigate("/")
-          }
-          else{
-            alert(response.data.message)
-          }
+        }
+        else {
+          alert(response.data.message)
+        }
       })
       .catch((error) => {
         alert(error.data.message)
         console.log(error);
       });
-  
-  
-    };
-  
+      
+
+  };
+
   return (
-    <MDBContainer fluid>
-      <MDBRow>
+    <div >
 
-        <MDBCol sm='6'>
+      
+ 
+      <div className='d-flex flex-row ps-5 pt-5' style={{marginLeft:'10rem'}}>
+        <div style={{ fontSize: "35px" , paddingRight: "10px" }}>
+          <FontAwesomeIcon icon={faHandshakeAlt} className="navbar-brand-2" style={{ color: '#FF8000' }} > </FontAwesomeIcon>
+        </div>
+        {/* <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/> */}
+        <span className="h1 fw-bold mb-0">Helping Hands</span>
+      </div>
 
-          <div className='d-flex flex-row ps-5 pt-5'>
-            <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/>
-            <span className="h1 fw-bold mb-0">Logo</span>
+
+      
+        
+      <MDBContainer lg  >
+      <div className="container2">
+        <MDBRow>
+
+          <MDBCol sm='6'>
+          <MDBIcon onClick={handleback} icon='arrow-circle-left' style={{fontSize:"35px" , marginLeft:"2rem", marginTop:"5.2rem", display:"block", position:"absolute"}}/>
+
+          {/* <button class="back-button" onclick={handleback}>Back</button> */}
+
+            <div style={{ paddingTop: '35px', paddingLeft: '50px', fontSize: '18px'}}>
+
+
+              <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4' >
+              <div className="form-column">
+                <h3 className="fw-normal mb-3 ps-5 pb-3" style={{ letterSpacing: '1px', fontSize: '35px' }} >NGO Login</h3>
+
+
+                <MDBInput wrapperClass='mb-4 mx-5 w-75' label='Email address' id='formControlLg' type='email' onChange={handleEmailChange} required size="lg" />
+                <MDBInput wrapperClass='mb-4 mx-5 w-75' label='Password' id='formControlLg' type='password' onChange={handlePasswordChange} required size="lg" />
+                <MDBBtn className="mb-4 px-5 mx-5 w-50" color='info' size='lg' onClick={handleSubmit}>Login</MDBBtn>
+                <p className='ms-5'>Don't have an account? <a href="#!" class="link-info"><Link to="/register">Register</Link></a></p>
+              </div>
+            </div>
+            </div>
+          </MDBCol>
+          
+          <div className="image-column"> 
+          <MDBCol sm='6' className='d-none d-sm-block px-0'>
+            <img src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37336.jpg?w=740&t=st=1681558380~exp=1681558980~hmac=a646258d3968d2743d6fc1dd5589033eb8350d7b3558de58cacfb74811f52eda" alt="Login image" className="w-125" 
+            style={{alignContent:'flex-end' ,height:'31rem', width:'25rem'}}/>
+          </MDBCol>
           </div>
-
-          <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
-
-            <h3 className="fw-normal mb-3 ps-5 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
-
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Email address' id='formControlLg' type='email' onChange={handleEmailChange} required size="lg"/>
-            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' onChange={handlePasswordChange} required size="lg"/>
-            <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg' onClick={handleSubmit}>Login</MDBBtn>
-            <p className='ms-5'>Don't have an account? <a href="#!" class="link-info"><Link to="/register">Register</Link></a></p>
-          </div>
-
-        </MDBCol>
-
-        <MDBCol sm='6' className='d-none d-sm-block px-0'>
-          <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRpb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-            alt="Login image" className="w-100" style={{ objectPosition: 'left', height:'96vh',width:'', paddingRight:'20px'}} />
-        </MDBCol>
-
-      </MDBRow>
-
-    </MDBContainer>
+        </MDBRow>
+        </div>
+      </MDBContainer>
+    </div>
+    
   );
 }
 
