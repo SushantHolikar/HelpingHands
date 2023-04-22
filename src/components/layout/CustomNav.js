@@ -39,7 +39,7 @@ const CustomNav = () => {
   
   return (
     
-    <Navbar expand="sm" className="header-nav" style={{"position":"fixed","top":"0"}}>
+    <Navbar expand="sm" className="header-nav" style={{"position":"fixed","top":"0","zIndex":"3"}}>
       <Container fluid className="px-5">
         <Navbar.Brand href="/" className="navbar-brand">
           <FontAwesomeIcon icon={faHandshakeAlt} className="navbar-brand-2" > </FontAwesomeIcon>

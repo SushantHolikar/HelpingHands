@@ -14,7 +14,7 @@
 
 .MuiTooltip-tooltip{
     margin-top: -1rem;
-    background-color: #FF8000 !important;
+    background-color:transparent !important;
 }
 #footer{    margin-top: -0.5rem !important;
     margin-bottom: -2.5rem !important;
@@ -49,7 +49,9 @@
   flex-grow: 1;
 } */
 
-
+.fab{
+  cursor: pointer;
+}
 .createButton {
   margin-top: 2rem;
   background-color: #007bff;
@@ -110,26 +112,16 @@
   position: relative; /* add position relative */
 }
 
-.image:after {
-  content: "";
-  display: block;
-  width: 250%;
-  height: 1px;
-  background-color: #000000; /* set the desired color for the horizontal line */
-  position: absolute; /* change position to absolute */
-  bottom: -0.5rem; /* position the horizontal line at the bottom of the .image element */
-}
-
 
 .name {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8px; /* changed from margin-bottom to margin-top */
+   /* changed from margin-bottom to margin-top */
   text-align: center;
   font-weight: bold;
   font-size: 20px;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .progress {
@@ -176,5 +168,58 @@
 .image-column{
   flex: 1;
   padding: 20px;
+}
+
+.FormGroup2 {
+	margin: 0 15px 20px;
+	padding: 0;
+  color: #000000;
+	border-style: none;
+	background-color: #7795f8;
+	will-change: opacity, transform;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #829fff;
+	border-radius: 4px;
+}
+
+.FormRow2 {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-left: 15px;
+	border-top: 10px solid #000000;
+  color: #000000;
+}
+
+.StripeElement--webkit-autofill {
+	background: transparent !important;
+}
+
+.StripeElement {
+	width: 100%;
+	padding: 11px 15px 11px 0;
+}
+
+button2 {
+	display: block;
+	font-size: 16px;
+	width: calc(100% - 30px);
+	height: 40px;
+	margin: 40px 15px 0;
+	background-color: #f6a4eb;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #ffb9f6;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 100ms ease-in-out;
+	will-change: transform, background-color, box-shadow;
+	border: none;
+}
+
+button2:active {
+	background-color: #d782d9;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #e298d8;
+	transform: scale(0.99);
 }
 

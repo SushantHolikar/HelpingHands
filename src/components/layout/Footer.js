@@ -1,12 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Footer = () => {
+
+  const navigate = useNavigate()
+  
   const handleEmailClick = () => {
     window.location.href = "mailto:helpinghandsorg711@gmail.com";
   };
   const handlePhoneClick = () => {
     window.location.href = "tel:+911245367778";
   };
+
+  const handlePayment = () => {
+    navigate("/stripeDonateUs")
+  }
 
   const handleEmailClickEvent = () => {
     const encodedSubject = encodeURIComponent("To inform about a new event and its details");
@@ -37,7 +46,7 @@ const handleEmailClickArticle = () => {
                     <span className="icon-container d-flex align-items-center justify-content-center me-3">
                       <i className="fa-solid fa-heart"></i>
                     </span>
-                    <span> <a href="https://donate.stripe.com/test_fZebMzbktc3CgcU5kl" className="text-container" style={{color:"white"}}> donate now  </a></span>
+                    <span onClick={handlePayment} className="text-container" style={{color:"white"}}> donate now</span>
                   </span>
                 </button>
               </div>

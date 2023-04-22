@@ -1,122 +1,128 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandshakeAlt } from "@fortawesome/free-solid-svg-icons";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBIcon,
-  MDBInput
-}
-  from 'mdb-react-ui-kit';
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { Scale } from "@mui/icons-material";
-import shadows from "@mui/material/styles/shadows";
-import { fontGrid } from "@mui/material/styles/cssUtils";
-
-function App() {
-
-  const navigate = useNavigate()
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleback = () => {
-    navigate("/")
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-  const host = "https://helpinghands-backend.onrender.com"
-  const handleSubmit = () => {
-    console.log("clicked")
-    if (localStorage.getItem('loggedInNgo')) {
-      navigate("/")
-    }
-    axios.post("https://helpinghands-backend.onrender.com/user/signin", {
-      email: email,
-      password: password,
-    })
-      .then((response) => {
-        console.log(response)
-        if (response.data.status === "SUCCESS") {
-          localStorage.setItem('loggedInNgo', true)
-          localStorage.setItem('email', email)
-          navigate("/")
-        }
-        else {
-          alert(response.data.message)
-        }
-      })
-      .catch((error) => {
-        alert(error.data.message)
-        console.log(error);
-      });
-      
-
-  };
-
+function Copyright(props) {
   return (
-    <div >
-
-      
- 
-      <div className='d-flex flex-row ps-5 pt-5'>
-        <div style={{ fontSize: "35px" , paddingRight: "10px" }}>
-          <FontAwesomeIcon icon={faHandshakeAlt} className="navbar-brand-2" style={{ color: '#FF8000' }} > </FontAwesomeIcon>
-        </div>
-        {/* <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/> */}
-        <span className="h1 fw-bold mb-0">Helping Hands</span>
-      </div>
-
-
-      
-        
-      <MDBContainer lg  >
-      <div className="container2">
-        <MDBRow>
-
-          <MDBCol sm='6'>
-          <MDBIcon onClick={handleback} icon='arrow-circle-left' style={{fontSize:"35px" , marginLeft:"2rem", marginTop:"5.2rem", display:"block", position:"absolute"}}/>
-
-          {/* <button class="back-button" onclick={handleback}>Back</button> */}
-
-            <div style={{ paddingTop: '35px', paddingLeft: '50px', fontSize: '18px'}}>
-
-
-              <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4' >
-              <div className="form-column">
-                <h3 className="fw-normal mb-3 ps-5 pb-3" style={{ letterSpacing: '1px', fontSize: '35px' }} >NGO Login</h3>
-
-
-                <MDBInput wrapperClass='mb-4 mx-5 w-75' label='Email address' id='formControlLg' type='email' onChange={handleEmailChange} required size="lg" />
-                <MDBInput wrapperClass='mb-4 mx-5 w-75' label='Password' id='formControlLg' type='password' onChange={handlePasswordChange} required size="lg" />
-                <MDBBtn className="mb-4 px-5 mx-5 w-50" color='info' size='lg' onClick={handleSubmit}>Login</MDBBtn>
-                <p className='ms-5'>Don't have an account? <a href="#!" class="link-info"><Link to="/register">Register</Link></a></p>
-              </div>
-            </div>
-            </div>
-          </MDBCol>
-          
-          <div className="image-column"> 
-          <MDBCol sm='6' className='d-none d-sm-block px-0'>
-            <img src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37336.jpg?w=740&t=st=1681558380~exp=1681558980~hmac=a646258d3968d2743d6fc1dd5589033eb8350d7b3558de58cacfb74811f52eda" alt="Login image" className="w-125" 
-            style={{alignContent:'flex-end' ,height:'31rem', width:'25rem'}}/>
-          </MDBCol>
-          </div>
-        </MDBRow>
-        </div>
-      </MDBContainer>
-    </div>
-    
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
-export default App;
+const theme = createTheme();
+
+export default function SignInSide() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '97vh'}}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://img.freepik.com/free-photo/hand-with-coins-economy_23-2148568038.jpg?w=360&t=st=1681846575~exp=1681847175~hmac=466a680191425ebaf54500c4111a1cab93dda80244a97914226bcb1d8b1cb018)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            // height:'90vh'
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
+}

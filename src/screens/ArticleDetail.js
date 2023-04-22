@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { getArticleData } from "../actions/articles";
 import SocialIconsContainer from "../components/common/SocialIconsContainer";
 
@@ -16,12 +15,12 @@ const withRouter = (Component) => {
 
 const LatestArticleList = ({ article }) => {
   return (
-    <Link to={`/articles/${article._id}`} style={{ textDecoration: "none" }}>
+    <a href={`/#/articles/${article._id}`} style={{ textDecoration: "none" }}>
       <li className="latest-blog-list d-flex align-items-center">
         <img src={article.image} alt="Article Image" className="me-2" />
         <p className="latest-blog-title">{article.title}</p>
       </li>
-    </Link>
+    </a>
   );
 };
 
@@ -52,6 +51,30 @@ const ArticleDetail = ({
       setRows(json)
     }
     getBlogProfile();
+
+  }, [])
+
+  const host2 = "https://helpinghands-backend.onrender.com"
+  const [rows2, setRows2] = useState([])
+  var rand=0
+  useEffect(() => {
+    const getBlogProfile2 = async () => {
+      const response2 = await fetch(`${host2}/api/auth/getpost`, {
+        method: 'GET'
+      });
+
+      const json2 = await response2.json();
+      var temp=[]
+      if(json2.length)
+      temp.push(json2[0])
+      if(json2.length>1)
+      temp.push(json2[1])
+      if(json2.length>2)
+      temp.push(json2[2])
+      setRows2(temp)
+
+    }
+    getBlogProfile2();
 
   }, [])
 
@@ -90,8 +113,8 @@ const ArticleDetail = ({
                 <div className="d-flex flex-column align-items-center justify-content-center">
                   <h4 className="mb-4">Latest Articles</h4>
                   <ul className="info-card-content">
-                    {latestArticlesIndex.map((index) => (
-                      <LatestArticleList article={articles[index]} />
+                    {rows2?.map((index) => (
+                      <LatestArticleList article={index} />
                     ))}
                   </ul>
                 </div>
@@ -111,7 +134,6 @@ const mapStateToProps = ({ articles, loading }, props) => {
   );
   return {
     latestArticlesIndex: Object.keys(articles)
-      .sort((a, b) => articles[b].id - articles[a].id)
       .splice(3),
     article: articles[articleIndex],
     loading,
