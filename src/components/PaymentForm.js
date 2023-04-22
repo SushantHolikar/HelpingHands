@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
 import React, { useState } from 'react'
 
+const backend = "https://helpinghands-backend.onrender.com/stripeDonateUs"
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
@@ -37,10 +38,11 @@ export default function PaymentForm() {
             card: elements.getElement(CardElement)
         })
 
-
+        
     if(!error) {
         try {
             const {id} = paymentMethod
+            console.log(id);
             const response = await axios.post("https://helpinghands-backend.onrender.com/stripeDonateUs", {
                 amount: 1000,
                 id
@@ -50,7 +52,6 @@ export default function PaymentForm() {
                 console.log("Successful payment")
                 setSuccess(true)
             }
-
         } catch (error) {
             console.log("Error", error)
         }
