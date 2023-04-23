@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./screens/Home";
 import Articles from "./screens/Articles";
 import Donate from "./screens/Donate";
+import Label from "./screens/Label";
 import Events from "./screens/Events";
 import DonateDetail from "./screens/DonateDetail";
 import ArticleDetail from "./screens/ArticleDetail";
@@ -40,6 +41,7 @@ function App() {
         <Route path="/user/verify/:userId" element={<Verify Footer={<Footer/>} />} />
         <Route path="/donor/verifydonor/:donorId" element={<VerifyDonor Footer={<Footer/>} />} />
         <Route path="/stripeDonateUs" element={<StripeContainer />} />
+        <Route path="/label/:labelId" element={<Label />} />
 
       </Routes>
       `

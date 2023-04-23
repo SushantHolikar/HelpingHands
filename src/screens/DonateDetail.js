@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDonationData } from "../actions/donations";
 import SocialIconsContainer from "../components/common/SocialIconsContainer";
@@ -178,7 +178,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
                           <li className="event-info-list">
                             <p>
                               <i className="fa-solid fa-tag"></i>{" "}
-                              {rows?.label}
+                              <Link to={`/label/${rows?.label}`}>{rows?.label}</Link> 
                             </p>
                           </li>
                         </ul>
