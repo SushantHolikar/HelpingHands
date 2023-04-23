@@ -11,7 +11,11 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import { AddCircle, AssuredWorkload, Person } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
+//name phone location image
 
 function Copyright(props) {
   return (
@@ -33,14 +37,21 @@ export default function SignInSide() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      title: data.get('title'),
+      detail: data.get('detail'),
+      summary: data.get('summary'),
+      label: data.get('label'),
+      goalFund: data.get('goalFund'),
+      name: data.get('name'),
+      phone: data.get('phone'),
+      location: data.get('location'),
+      image: data.get('image'),
     });
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '97vh'}}>
+      <Grid container component="main" sx={{ height: '97vh' }}>
         <CssBaseline />
         <Grid
           item
@@ -56,69 +67,135 @@ export default function SignInSide() {
             backgroundPosition: 'center',
             // height:'90vh'
           }}
+          style={{ "minWidth": "100px", "maxWidth": "497px", "maxHeight": "100vh" }}
+
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ minWidth: "67.6%" }}
+        >
           <Box
             sx={{
               my: 8,
               mx: 4,
+              mt: 0,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
             }}
+
+
+
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
+            <Avatar sx={{ m: 1, bgcolor: 'black', color:"#FF8000" }}>
+              <AssuredWorkload />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Donation Request
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+
+
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                name="title"
+                label="Title"
+                type="title"
+                id="title"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="detail"
+                label="Details"
+                name="detail"
                 autoFocus
               />
               <TextField
                 margin="normal"
-                required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name="summary"
+                label="Summary"
+                type="summary"
+                id="summary"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+
+
+
+
+              <Grid container spacing={2}>
+
+                <Grid item xs={12} sm={6}><TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="goalFund"
+                  label="Goal Fund"
+                  id="goalFund"
+                /></Grid>
+                <Grid item xs={12} sm={6}><TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="label"
+                  label="Labels"
+                  id="label"
+                /></Grid>
+</Grid>
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Avatar sx={{ m: 1, bgcolor: 'black', color: "#FF8000" }}> <Person /> </Avatar>
+</div>
+<Typography component="h1" variant="h5" style={{textAlign:"center"}}>
+              Fundraiser Info
+            </Typography>
+
+            <Grid container spacing={2}>
+
+                <Grid item xs={12} sm={6}><TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="name"
+                  label="Name"
+                  id="name"
+                /></Grid>
+                <Grid item xs={12} sm={6}><TextField
+                  margin="normal"
+                  fullWidth
+                  required
+                  name="phone"
+                  label="Phone"
+                  id="phone"
+                /></Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="location"
+                    label="City"
+                    id="location"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="image"
+                    label="Image Link"
+                    id="image"
+                  />
+                </Grid>
+              </Grid>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Submit
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>
