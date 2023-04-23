@@ -91,7 +91,7 @@ const DonationSection = ({ donationcard, loading, totalcards }) => {
       <section id="donation">
         <div className="container my-5">
           <div className="row py-4 text-center">
-            <h2>Featured Donations</h2>
+            <h2 style={{marginTop:"2rem"}}>Featured Donations</h2>
           </div>
           <div className={"row"}>
             {rows&& Object.keys(rows).map((index) => {

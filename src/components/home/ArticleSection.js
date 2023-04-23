@@ -59,7 +59,7 @@ const ArticleSection = ({ articles, loading, totalcards }) => {
       <section id="articles">
         <div className="container">
           <div className="row text-center py-4">
-            <h2>Blogs & Articles</h2>
+          <h2 style={{marginTop:"5rem"}}>Recent Articles</h2>
           </div>
           <div className="row overflow-hidden">
             {rows&&Object.keys(rows).map((index) => {

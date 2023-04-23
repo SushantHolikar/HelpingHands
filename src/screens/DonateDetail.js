@@ -159,7 +159,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
                             <p>
                               Created:{" "}
                               <span>
-                              {convertToDateString(rows?.date)}
+                              {convertToDateString(rows?.date)} 2023
                               </span>
                             </p>
                           </li>
@@ -178,7 +178,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
                           <li className="event-info-list">
                             <p>
                               <i className="fa-solid fa-tag"></i>{" "}
-                              <Link to={`/label/${rows?.label}`}>{rows?.label}</Link> 
+                              <Link style={{color:"#1f1f1f"}} to={`/label/${rows?.label}`}>{rows?.label}</Link> 
                             </p>
                           </li>
                         </ul>

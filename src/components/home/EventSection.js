@@ -76,7 +76,7 @@ const EventSection = ({ events, loading, totalcards }) => {
       <section id="events" className="my-5">
         <div className="container">
           <div className="row text-center py-4">
-            <h2>Upcoming Events</h2>
+            <h2 style={{marginTop:"2rem"}}>Upcoming Events</h2>
           </div>
           <div className="row" >
             {rows&&Object.keys(rows).map((index) => {
