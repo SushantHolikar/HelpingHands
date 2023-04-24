@@ -16,17 +16,17 @@ const products = [
 // const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
+  { name: 'Card holder', detail: 'Omkar Chalak' },
   { name: 'Card number', detail: 'xxxx-xxxx-xxxx-4242' },
-  { name: 'Expiry date', detail: '04/2024' },
+  { name: 'Expiry date', detail: '04/24' },
 ];
 
 export default function Review() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom style={{ fontFamily: "sans-serif !important"}}>
+      <div style={{fontFamily:"sans-serif", fontWeight:"bold", fontSize:"20px"}}>
         Order summary
-      </Typography>
+      </div>
       <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
@@ -44,9 +44,9 @@ export default function Review() {
       </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6} >
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }} >
+        <div style={{fontFamily:"sans-serif", fontWeight:"bold", fontSize:"20px"}}>
             Payment details
-          </Typography>
+          </div>
           <Grid container>
             {payments.map((payment) => (
               <React.Fragment key={payment.name}>

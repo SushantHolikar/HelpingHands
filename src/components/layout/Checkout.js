@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { VerifiedRounded } from '@mui/icons-material';
 
 const steps = ['Personal Information', 'Payment details', 'Review your order'];
 
@@ -58,9 +60,9 @@ export default function Checkout() {
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography>
+          <div style={{fontFamily:"sans-serif" ,fontSize:"40px", fontWeight:"bolder"}}>
+            Donate Us
+          </div>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
@@ -70,14 +72,17 @@ export default function Checkout() {
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                Thank you for your order.
-              </Typography>
-              <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
-              </Typography>
+
+            <div style={{display: "flex", justifyContent:'center'}}>
+            <Avatar sx={{ m: 1, bgcolor: 'green', color: "white" , marginTop:"1rem" }}> <VerifiedRounded /> </Avatar>
+            </div>
+
+              <div style={{fontFamily:"sans-serif", fontWeight:"bold", display: "flex", justifyContent:'center', marginTop:"2rem"}}>
+              Payment Successful !
+              </div>
+              <div variant="subtitle1" style={{fontFamily:"sans-serif" ,display: "flex", justifyContent:'center',  marginTop:"1rem"}}>
+              Thank you so much for your kind donation, your generosity will help us make a real impact in making world a better place.
+              </div>
             </React.Fragment>
           ) : (
             <React.Fragment>

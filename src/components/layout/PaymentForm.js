@@ -8,9 +8,9 @@ import Checkbox from '@mui/material/Checkbox';
 export default function PaymentForm() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <div style={{fontFamily:"sans-serif", fontWeight:"bold", fontSize:"20px"}}>
         Payment method
-      </Typography>
+      </div>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField
@@ -40,6 +40,7 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-exp"
             variant="standard"
+            placeholder='MM/YY'
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -51,12 +52,6 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
           />
         </Grid>
       </Grid>
