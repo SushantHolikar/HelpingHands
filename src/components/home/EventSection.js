@@ -84,11 +84,6 @@ const EventSection = ({ events, loading, totalcards }) => {
                 return <EventCard event={rows[index]} />;
               }
             })}
-            {/* {rows&&rows.map((element) => {
-    return <div key={rand++} style={{"margin":"0","padding":"0","width":"100%"}}>
-       <EventCard event={element} />
-    </div>
-})} */}
           </div>
         </div>
       </section>

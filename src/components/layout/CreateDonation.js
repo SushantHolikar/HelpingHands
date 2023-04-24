@@ -1,52 +1,107 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
+import axios from "axios";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { AddCircle, AssuredWorkload, Person } from '@mui/icons-material';
+import {AssuredWorkload, Person } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-//name phone location image
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      title: data.get('title'),
-      detail: data.get('detail'),
-      summary: data.get('summary'),
-      label: data.get('label'),
-      goalFund: data.get('goalFund'),
-      name: data.get('name'),
-      phone: data.get('phone'),
-      location: data.get('location'),
-      image: data.get('image'),
-    });
+function App() {
+
+  
+  const [title, setTitle] = useState("");
+  const [detail, setDetail] = useState("");
+  const [summary, setSummary] = useState("");
+  const [label, setLabel] = useState("");
+  const [goalFund, setGoalFund] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState("");
+  
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleDetailChange = (e) => {
+    setDetail(e.target.value);
+  };
+
+  const handleSummaryChange = (e) => {
+    setSummary(e.target.value);
+  };
+
+  const handleGoalFundChange = (e) => {
+    setGoalFund(e.target.value);
+  };
+
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.value);
+  };
+
+  const handleLabelChange = (e) => {
+    setLabel(e.target.value);
+  };
+  
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hai bhai")
+    axios.post("https://helpinghands-backend.onrender.com/donationcards/create", {
+      
+    title: title,
+      label: label,
+      detail: detail,
+      summary: summary,
+      goalFund: goalFund,
+      name: name,
+      phone: phone,
+      location: location,
+      image: image
+      
+     
+    })
+    .then((response) => {
+      console.log(response)
+      alert(response.data.message)
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  setTitle("");
+  setDetail("");
+  setSummary("");
+  setLabel("");
+  setGoalFund("");
+  setName("");
+  setPhone("");
+  setLocation("");
+  setImage("");
   };
 
   return (
@@ -95,6 +150,7 @@ export default function SignInSide() {
 
 
               <TextField
+              onChange={handleTitleChange}
                 margin="normal"
                 required
                 fullWidth
@@ -102,8 +158,10 @@ export default function SignInSide() {
                 label="Title"
                 type="title"
                 id="title"
+                value={title}
               />
               <TextField
+              onChange={handleDetailChange}
                 margin="normal"
                 required
                 fullWidth
@@ -111,10 +169,13 @@ export default function SignInSide() {
                 label="Details"
                 name="detail"
                 autoFocus
+                value={detail}
               />
               <TextField
+              onChange={handleSummaryChange}
                 margin="normal"
                 fullWidth
+                value={summary}
                 name="summary"
                 label="Summary"
                 type="summary"
@@ -127,17 +188,21 @@ export default function SignInSide() {
               <Grid container spacing={2}>
 
                 <Grid item xs={12} sm={6}><TextField
+                onChange={handleGoalFundChange}
                   margin="normal"
                   required
                   fullWidth
+                  value={goalFund}
                   name="goalFund"
                   label="Goal Fund"
                   id="goalFund"
                 /></Grid>
                 <Grid item xs={12} sm={6}><TextField
+                  onChange={handleLabelChange}
                   margin="normal"
                   required
                   fullWidth
+                  value={label}
                   name="label"
                   label="Labels"
                   id="label"
@@ -154,25 +219,31 @@ export default function SignInSide() {
             <Grid container spacing={2}>
 
                 <Grid item xs={12} sm={6}><TextField
+                onChange={handleNameChange}
                   margin="normal"
                   required
+                  value={name}
                   fullWidth
                   name="name"
                   label="Name"
                   id="name"
                 /></Grid>
                 <Grid item xs={12} sm={6}><TextField
+                onChange={handlePhoneChange}
                   margin="normal"
                   fullWidth
                   required
+                  value={phone}
                   name="phone"
                   label="Phone"
                   id="phone"
                 /></Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                  onChange={handleLocationChange}
                     required
                     fullWidth
+                    value={location}
                     name="location"
                     label="City"
                     id="location"
@@ -180,8 +251,10 @@ export default function SignInSide() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                  onChange={handleImageChange}
                     required
                     fullWidth
+                    value={image}
                     name="image"
                     label="Image Link"
                     id="image"
@@ -189,7 +262,7 @@ export default function SignInSide() {
                 </Grid>
               </Grid>
               <Button
-                type="submit"
+                onClick={handleSubmit}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
@@ -203,3 +276,5 @@ export default function SignInSide() {
     </ThemeProvider>
   );
 }
+
+export default App;

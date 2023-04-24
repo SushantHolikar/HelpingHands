@@ -14,7 +14,7 @@ const Footer = () => {
   };
 
   const handlePayment = () => {
-    navigate("/stripeDonateUs")
+    navigate("/donateus")
   }
 
   const handleEmailClickEvent = () => {
