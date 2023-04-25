@@ -1,10 +1,10 @@
-
-
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshakeAlt } from "@fortawesome/free-solid-svg-icons";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import {
   MDBBtn,
   MDBContainer,
@@ -14,11 +14,6 @@ import {
   MDBInput
 }
   from 'mdb-react-ui-kit';
-
-import { Scale } from "@mui/icons-material";
-import shadows from "@mui/material/styles/shadows";
-import { fontGrid } from "@mui/material/styles/cssUtils";
-
 function App() {
 
   const navigate = useNavigate()
@@ -38,9 +33,22 @@ function App() {
   };
   const host = "http://localhost:5000"
   const handleSubmit = () => {
-    console.log("clicked")
+   
     if (localStorage.getItem('loggedInNgo')) {
       navigate("/")
+    }
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
     }
     axios.post("http://localhost:5000/user/signin", {
       email: email,
@@ -51,14 +59,44 @@ function App() {
         if (response.data.status === "SUCCESS") {
           localStorage.setItem('loggedInNgo', true)
           localStorage.setItem('email', email)
-          navigate("/")
+          setTimeout(() => {
+            toast.success(response.data.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            navigate("/");
+          }, 1000);
         }
         else {
-          alert(response.data.message)
+          toast.error(response.data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       })
       .catch((error) => {
-        alert(error.data.message)
+        toast.error(error.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         console.log(error);
       });
       
@@ -68,7 +106,18 @@ function App() {
   return (
     <div >
 
-      
+<ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
  
       <div className='d-flex flex-row ps-5 pt-5'>
         <div style={{ fontSize: "35px" , paddingRight: "10px" }}>
@@ -77,18 +126,12 @@ function App() {
         {/* <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/> */}
         <span className="h1 fw-bold mb-0">Helping Hands</span>
       </div>
-
-
-      
-        
       <MDBContainer lg  >
       <div className="container2">
         <MDBRow>
 
           <MDBCol sm='6'>
           <MDBIcon onClick={handleback} icon='arrow-circle-left' style={{fontSize:"35px" , marginLeft:"2rem", marginTop:"5.2rem", display:"block", position:"absolute"}}/>
-
-          {/* <button class="back-button" onclick={handleback}>Back</button> */}
 
             <div style={{ paddingTop: '35px', paddingLeft: '50px', fontSize: '18px'}}>
 

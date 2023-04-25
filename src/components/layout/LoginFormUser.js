@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshakeAlt } from "@fortawesome/free-solid-svg-icons";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import {
   MDBBtn,
   MDBContainer,
@@ -41,6 +43,19 @@ function App() {
       if(localStorage.getItem('loggedInUser')){
         navigate("/")
       }
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        toast.error("Please enter a valid email address.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        return;
+      }
       axios.post("http://localhost:5000/donor/signin", {
         email: email,
         password: password,
@@ -50,15 +65,45 @@ function App() {
           console.log(response)
           localStorage.setItem('loggedInUser',true)
           localStorage.setItem('email',email)
-          navigate("/")
+          setTimeout(() => {
+            toast.success(response.data.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            navigate("/");
+          }, 1000);
         }
         else{
-            alert(response.data.message)
+          toast.error(response.data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       })
       .catch((error) => {
         console.log(error);
-        alert(error.data.message)
+        toast.error(error.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   
   
@@ -83,7 +128,18 @@ function App() {
       <MDBContainer lg  >
       <div className="container2">
         <MDBRow>
-
+        <ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
           <MDBCol sm='6'>
           <MDBIcon onClick={handleback} icon='arrow-circle-left' style={{fontSize:"35px" , marginLeft:"2rem", marginTop:"5.2rem", display:"block", position:"absolute"}}/>
 

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,6 +57,19 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you can add your register logic
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
 
     axios.post("http://localhost:5000/user/signup", {
       email: email,
@@ -65,13 +80,49 @@ function App() {
     })
     .then((response) => {
       console.log(response)
-      alert(response.data.message)
-
+      
       if(response.data.message==="Verification email sent")
-      navigate("/login")
+      setTimeout(() => {
+        toast.warn(response.data.message, {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate("/login");
+      }, 0);
+
+      else{
+        toast.error(response.data.message, {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+  
+      }
   })
   .catch((error) => {
     console.log(error);
+    // toast.error(error.data.message, {
+    //   position: "top-center",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "light",
+    // });
+
   });
 
     setEmail("");
@@ -99,7 +150,18 @@ function App() {
       <MDBContainer lg  >
         <div className="container2">
           <MDBRow>
-
+          <ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
             <MDBCol sm='6'>
               <MDBIcon onClick={handleback} icon='arrow-circle-left' style={{ fontSize: "35px", marginLeft: "2rem", marginTop: "5.2rem", display: "block", position: "absolute" }} />
 

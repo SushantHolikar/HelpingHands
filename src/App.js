@@ -19,8 +19,10 @@ import LoginFormUser from "./components/layout/LoginFormUser";
 import RegisterFormUser from "./components/layout/RegisterFormUser";
 import CreateDonation from "./components/layout/CreateDonation";
 import "./App.css"
+import "react-toastify/dist/ReactToastify.css";
 import Checkout from "./components/layout/Checkout";
 import Checkout2 from "./components/layout/Checkout2";
+import { ToastContainer, toast } from "react-toastify";
 function App() {
   return (
     <>
@@ -44,7 +46,7 @@ function App() {
         <Route path="/donateus" element={<Checkout />} />
         <Route path="/checkout" element={<Checkout2 />} />
       </Routes>
-      `
+      `<ToastContainer/>
     </>
   );
 }

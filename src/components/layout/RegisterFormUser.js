@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,13 +21,15 @@ function App() {
     navigate("/")
   };
 
-  const [profileImage, setProfileImage] = useState("");
+
 
 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+
   const navigate = useNavigate()
 
   const handleEmailChange = (e) => {
@@ -48,18 +52,55 @@ function App() {
 
   const handleSubmit = () => {
     // Here you can add your register logic
-
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
     axios.post("http://localhost:5000/donor/signup", {
       email: email,
       password: password,
-      name: name
+      name: name,
+      profileImage: profileImage
     })
       .then((response) => {
         console.log(response)
-        alert(response.data.message)
+        
 
         if (response.data.message === "Verification email sent")
-          navigate("/loginUser")
+        setTimeout(() => {
+          toast.warn(response.data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          navigate("/loginUser");
+        }, 0);
+        else{
+          toast.error(response.data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +114,18 @@ function App() {
   return (
     <div >
 
-
+<ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
 
       <div className='d-flex flex-row ps-5 pt-5' >
         <div style={{ fontSize: "35px", paddingRight: "10px" }}>

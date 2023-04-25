@@ -4,7 +4,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+
+
+const donationAmount = localStorage.getItem('donationAmount');
+const cardName = localStorage.getItem('cardName');
+const cardNumber = localStorage.getItem('cardNumber');
+const date = localStorage.getItem('date');
 
 const products = [
   {
@@ -14,15 +19,11 @@ const products = [
   }
 ];
 
-
-
-
-// const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Omkar Chalak' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-4242' },
-  { name: 'Expiry date', detail: '04/24' },
+  { name: 'Card holder', detail: `${cardName}` },
+  { name: 'Card number', detail: `${cardNumber}` },
+  { name: 'Expiry date', detail: `${date}` },
 ];
 
 export default function Review() {
@@ -35,14 +36,14 @@ export default function Review() {
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
             <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <Typography variant="body2">₹{donationAmount}</Typography>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700, fontFamily: "sans-serif !important" }}>
-            ₹2000
+          ₹{donationAmount}
           </Typography>
         </ListItem>
       </List>

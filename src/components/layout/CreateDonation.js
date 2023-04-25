@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -87,7 +89,16 @@ function App() {
     })
     .then((response) => {
       console.log(response)
-      alert(response.data.message)
+      toast.error(response.data.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
   })
   .catch((error) => {
     console.log(error);
@@ -125,6 +136,18 @@ function App() {
           style={{ "minWidth": "100px", "maxWidth": "497px", "maxHeight": "100vh" }}
 
         />
+        <ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ minWidth: "67.6%" }}
         >
           <Box
