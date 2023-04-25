@@ -36,7 +36,7 @@ const ArticleDetail = ({
   }, []);
 
   const {postId}=useParams()
-  const host = "https://helpinghands-backend.onrender.com"
+  const host = "http://localhost:5000"
   const [rows, setRows] = useState(null)
   var rand=0
   useEffect(() => {
@@ -54,7 +54,7 @@ const ArticleDetail = ({
 
   }, [])
 
-  const host2 = "https://helpinghands-backend.onrender.com"
+  const host2 = "http://localhost:5000"
   const [rows2, setRows2] = useState([])
   var rand=0
   useEffect(() => {

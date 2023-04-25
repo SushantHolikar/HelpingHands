@@ -20,6 +20,7 @@ import RegisterFormUser from "./components/layout/RegisterFormUser";
 import CreateDonation from "./components/layout/CreateDonation";
 import "./App.css"
 import Checkout from "./components/layout/Checkout";
+import Checkout2 from "./components/layout/Checkout2";
 function App() {
   return (
     <>
@@ -41,6 +42,7 @@ function App() {
         <Route path="/donor/verifydonor/:donorId" element={<VerifyDonor Footer={<Footer/>} />} />
         <Route path="/label/:labelId" element={<Label />} />
         <Route path="/donateus" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout2 />} />
       </Routes>
       `
     </>

@@ -27,19 +27,6 @@ const DonationCard = ({ donationcard }) => {
             <div className="progress-container px-3 pt-5 pb-3">
               <ProgressBar percentage={percentage} />
 
-              {/*<div className="progressbar-item">*/}
-              {/*    <div>*/}
-              {/*        <div className="progress-number">*/}
-              {/*            <div className="progress-number-mark bg-warning">*/}
-              {/*                <span className="percent">45%</span>*/}
-              {/*                <span className="down-arrow bg-warning"></span>*/}
-              {/*            </div>*/}
-              {/*        </div>*/}
-              {/*        <div className="progress-bg">*/}
-              {/*            <div className="progress-fill bg-warning"></div>*/}
-              {/*        </div>*/}
-              {/*    </div>*/}
-              {/*</div>*/}
               <div className="statistics-container d-flex align-items-center justify-content-between">
                 <p>
                   <span className="currency">&#8377;{donationcard.currentFund} </span>
@@ -63,7 +50,7 @@ const DonationCard = ({ donationcard }) => {
 
 const DonationSection = ({ donationcard, loading, totalcards }) => {
 
-  const host = "https://helpinghands-backend.onrender.com"
+  const host = "http://localhost:5000"
 
   const [rows, setRows] = useState(null)
   var rand=0

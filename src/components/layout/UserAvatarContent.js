@@ -29,7 +29,7 @@ function UserAvatarContent({ user }) {
           </MDBCardText>
         </div>
         <div className="px-3">
-          <MDBCardText className="mb-1 h5">₹8512</MDBCardText>
+          <MDBCardText className="mb-1 h5">₹{user?.amount}</MDBCardText>
           <MDBCardText className="small text-muted mb-0">Total Donated</MDBCardText>
         </div>
 

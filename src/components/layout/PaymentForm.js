@@ -4,8 +4,12 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { useState } from 'react';
 
 export default function PaymentForm() {
+
+  const handleChane=()=>{
+  }  
   return (
     <React.Fragment>
       <div style={{fontFamily:"sans-serif", fontWeight:"bold", fontSize:"20px"}}>
@@ -30,6 +34,7 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-number"
             variant="standard"
+
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -41,6 +46,7 @@ export default function PaymentForm() {
             autoComplete="cc-exp"
             variant="standard"
             placeholder='MM/YY'
+
           />
         </Grid>
         <Grid item xs={12} md={6}>

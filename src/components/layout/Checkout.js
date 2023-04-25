@@ -9,12 +9,14 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import { VerifiedRounded } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const steps = ['Personal Information', 'Payment details', 'Review your order'];
 
@@ -35,13 +37,71 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const navigate = useNavigate()
 
+  // const handleNext = () => {
+  //   if (activeStep === steps.length - 1) {
+  //     const email = localStorage.getItem('email');
+  //     const donationAmount = localStorage.getItem('donationAmount');
+  //     const host = "http://localhost:5000"
+
+  //     axios.put(`${host}/api/auth/donors/${email}/donate/${donationAmount}`)
+  //       .then(response => {
+  //         console.log(response.data);
+  //         setActiveStep(activeStep + 1);
+  //       })
+  //       .catch(error => {
+          
+  //         console.log(error.response.data);
+  //       });
+  //   } else {
+  //     setActiveStep(activeStep + 1);
+  //   }
+  // };
+  
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    if (activeStep === steps.length - 1) {
+      const email = localStorage.getItem('email');
+      const donationAmount = localStorage.getItem('donationAmount');
+      const loggedInNgo = localStorage.getItem('loggedInNgo');
+      const loggedInUser = localStorage.getItem('loggedInUser');
+      const host = "http://localhost:5000"
+  
+      if (loggedInNgo === "true") {
+        axios.put(`${host}/api/auth/users/${email}/donate/${donationAmount}`)
+          .then(response => {
+            console.log(response.data);
+            setActiveStep(activeStep + 1);
+          })
+          .catch(error => {
+            console.log(error.response.data);
+          });
+      } else if (loggedInUser === "true"){
+        axios.put(`${host}/api/auth/donors/${email}/donate/${donationAmount}`)
+          .then(response => {
+            console.log(response.data);
+            setActiveStep(activeStep + 1);
+          })
+          .catch(error => {
+            console.log(error.response.data);
+          });
+      }
+      else{
+        alert('You must login first !')
+        navigate('/')
+      }
+    } else {
+      setActiveStep(activeStep + 1);
+    }
   };
+  
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  const handleBackTo = () => {
+    navigate("/")
   };
 
   return (
@@ -83,13 +143,24 @@ export default function Checkout() {
               <div variant="subtitle1" style={{fontFamily:"sans-serif" ,display: "flex", justifyContent:'center',  marginTop:"1rem"}}>
               Thank you so much for your kind donation, your generosity will help us make a real impact in making world a better place.
               </div>
+
+              <div style={{fontFamily:"sans-serif", fontWeight:"bold", display: "flex", justifyContent:'center'}}> <Button
+                  variant="contained"
+                  onClick={handleBackTo}
+                  sx={{ mt: 7, ml: 1 }}
+                >
+                  GO BACK TO WEBSITE
+                </Button>
+                </div>
+                
+
             </React.Fragment>
           ) : (
             <React.Fragment>
               {getStepContent(activeStep)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button onClick={handleBack} sx={{ mt: 7, ml: 1 }}>
                     Back
                   </Button>
                 )}
@@ -97,9 +168,9 @@ export default function Checkout() {
                 <Button
                   variant="contained"
                   onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
+                  sx={{ mt: 7, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  {activeStep === steps.length - 1 ? 'Donate' : 'Next'}
                 </Button>
               </Box>
             </React.Fragment>

@@ -1,11 +1,46 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
 
 export default function AddressForm() {
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [donationAmount, setAmount] = React.useState('');
+  const [firstNameError, setFirstNameError] = React.useState(false);
+  const [lastNameError, setLastNameError] = React.useState(false);
+  const [emailError, setEmailError] = React.useState(false);
+  const [amountError, setAmountError] = React.useState(false);
+
+  
+  const handleFirstNameChange = (event) => {
+    const input = event.target.value;
+    setFirstName(input);
+    setFirstNameError(!/^[a-zA-Z]+$/.test(input));
+  };
+
+  const handleLastNameChange = (event) => {
+    const input = event.target.value;
+    setLastName(input);
+    setLastNameError(!/^[a-zA-Z]+$/.test(input));
+  };
+
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setEmailError(!/^\S+@\S+\.\S+$/.test(event.target.value));
+  };
+
+  const handleAmountChange = (event) => {
+    setAmount(event.target.value);
+    setAmountError(event.target.value === '' || isNaN(event.target.value));
+    localStorage.setItem('donationAmount', event.target.value);
+  };
+
   return (
     <React.Fragment>
-      <div style={{fontFamily:"sans-serif", fontWeight:"bold", fontSize:"20px"}}>
+      <div style={{ fontFamily: "sans-serif", fontWeight: "bold", fontSize: "20px" }}>
         Personal Information
       </div>
       <Grid container spacing={3}>
@@ -18,6 +53,10 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            value={firstName}
+            onChange={handleFirstNameChange}
+            error={firstNameError}
+            helperText={firstNameError ? 'Please enter your first name' : ''}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -29,66 +68,38 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={lastName}
+            onChange={handleLastNameChange}
+            error={lastNameError}
+            helperText={lastNameError ? 'Please enter your last name' : ''}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="email"
+            name="email"
+            label="Email"
             fullWidth
             variant="standard"
+            value={email}
+            onChange={handleEmailChange}
+            error={emailError}
+            helperText={emailError ? 'Please enter a valid email address' : ''}
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} mt={3}>
           <TextField
             id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
+            name="amount"
+            label="Amount"
             required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
             fullWidth
-            autoComplete="shipping postal-code"
             variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
+            value={donationAmount}
+            onChange={handleAmountChange}
+            error={amountError}
+            helperText={amountError ? 'Please enter a valid donation amount' : ''}
           />
         </Grid>
       </Grid>

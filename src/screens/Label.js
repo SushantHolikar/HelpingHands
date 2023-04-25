@@ -49,7 +49,7 @@ const DonationCard = ({ donationcard }) => {
   };
 function Label() {
     const {labelId}=useParams()
-    const host = "https://helpinghands-backend.onrender.com"
+    const host = "http://localhost:5000"
   const [rows, setRows] = useState(null)
     useEffect(() => {
         const getBlogProfile = async () => {

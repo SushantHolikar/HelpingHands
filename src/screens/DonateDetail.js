@@ -44,7 +44,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
   const [percentage, setPercentage] = React.useState(0);
 
   const {donationcardId}=useParams()
-  const host = "https://helpinghands-backend.onrender.com"
+  const host = "http://localhost:5000"
   const [rows, setRows] = useState(null)
   var rand=0
   useEffect(() => {
@@ -121,7 +121,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
                             <span className="icon-container d-flex align-items-center justify-content-center me-3">
                               <i className="fa-solid fa-heart"></i>
                             </span>
-                            <span className="text-container"> donate now </span>
+                            <span className="text-container"><Link to={`/checkout?donationCardId=${donationcardId}`}>donate now </Link>   </span>
                           </span>
                         </button>
                       </div>

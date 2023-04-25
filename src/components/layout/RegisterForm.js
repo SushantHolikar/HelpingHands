@@ -56,7 +56,7 @@ function App() {
     e.preventDefault();
     // Here you can add your register logic
 
-    axios.post("https://helpinghands-backend.onrender.com/user/signup", {
+    axios.post("http://localhost:5000/user/signup", {
       email: email,
       password: password,
       name: name,
