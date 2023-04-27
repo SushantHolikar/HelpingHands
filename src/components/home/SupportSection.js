@@ -6,7 +6,7 @@ const SupportSection = () => {
     const [funds,setFunds]=useState(0)
         useEffect(() => {
             const getBlogProfile = async () => {
-              const response = await fetch(`http://localhost:5000/api/auth/donations-sum`, {
+              const response = await fetch(`https://helpinghands-backend.onrender.com/api/auth/donations-sum`, {
                 method: 'GET'
               });
         

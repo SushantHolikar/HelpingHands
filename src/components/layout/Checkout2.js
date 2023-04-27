@@ -51,7 +51,7 @@ export default function Checkout() {
             const donationAmount = localStorage.getItem('donationAmount');
             const loggedInNgo = localStorage.getItem('loggedInNgo');
             const loggedInUser = localStorage.getItem('loggedInUser');
-            const host = "http://localhost:5000"
+            const host = "https://helpinghands-backend.onrender.com"
             if (loggedInNgo === "true") {
                 axios.put(`${host}/api/auth/users/${email}/donate/${donationAmount}`)
                   .then(response => {

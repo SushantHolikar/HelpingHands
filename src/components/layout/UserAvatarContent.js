@@ -24,7 +24,7 @@ function UserAvatarContent({ user }) {
      const userEmail=localStorage.getItem('email')
     const sendReq=async ()=>{
 
-      const res=await fetch(`http://localhost:5000/api/auth/getspecific/${userEmail}`)
+      const res=await fetch(`https://helpinghands-backend.onrender.com/api/auth/getspecific/${userEmail}`)
          
       const data=await res.json();
     

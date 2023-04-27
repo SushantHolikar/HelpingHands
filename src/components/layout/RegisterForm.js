@@ -71,7 +71,7 @@ function App() {
       return;
     }
 
-    axios.post("http://localhost:5000/user/signup", {
+    axios.post("https://helpinghands-backend.onrender.com/user/signup", {
       email: email,
       password: password,
       name: name,

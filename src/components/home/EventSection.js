@@ -51,7 +51,7 @@ const EventCard = ({ event }) => {
 const EventSection = ({ events, loading, totalcards }) => {
   
   // https://helpinghands-backend.onrender.com
-  const host = "http://localhost:5000"
+  const host = "https://helpinghands-backend.onrender.com"
   const [rows, setRows] = useState(null)
   var rand=0
   useEffect(() => {

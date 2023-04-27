@@ -31,7 +31,7 @@ function App() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const host = "http://localhost:5000"
+  const host = "https://helpinghands-backend.onrender.com"
   const handleSubmit = () => {
    
     if (localStorage.getItem('loggedInNgo')) {
@@ -50,7 +50,7 @@ function App() {
       });
       return;
     }
-    axios.post("http://localhost:5000/user/signin", {
+    axios.post("https://helpinghands-backend.onrender.com/user/signin", {
       email: email,
       password: password,
     })

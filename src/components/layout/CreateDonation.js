@@ -26,7 +26,7 @@ function App() {
 useEffect(() => {
   const func=async()=>{
 
-    const response = await axios.get(`http://localhost:5000/api/auth/getspecificuser/${localStorage.getItem("email")}`, {
+    const response = await axios.get(`https://helpinghands-backend.onrender.com/api/auth/getspecificuser/${localStorage.getItem("email")}`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -98,7 +98,7 @@ useEffect(() => {
   const navigate = useNavigate()
   const handleSubmit = async(e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/donationcards/create", {
+    axios.post("https://helpinghands-backend.onrender.com/donationcards/create", {
       
     title: title,
       label: label,
@@ -130,7 +130,7 @@ useEffect(() => {
     console.log(error);
   });
 
-      const response = await fetch(`http://localhost:5000/api/auth/updateuser/${localStorage.getItem("email")}`, {
+      const response = await fetch(`https://helpinghands-backend.onrender.com/api/auth/updateuser/${localStorage.getItem("email")}`, {
         method: 'GET'
       });
 
