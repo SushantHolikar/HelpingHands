@@ -121,7 +121,7 @@ const DonateDetail = ({ donation, loading, dispatch }) => {
                             <span className="icon-container d-flex align-items-center justify-content-center me-3">
                               <i className="fa-solid fa-heart"></i>
                             </span>
-                            <span className="text-container"><Link to={`/checkout?donationCardId=${donationcardId}`}>donate now </Link>   </span>
+                            <span className="text-container"><Link  style={{color:"white"}} to={`/checkout?donationCardId=${donationcardId}`}>donate now </Link>   </span>
                           </span>
                         </button>
                       </div>

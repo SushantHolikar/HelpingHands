@@ -5,12 +5,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
-
-const donationAmount = localStorage.getItem('donationAmount');
-const cardName = localStorage.getItem('cardName');
-const cardNumber = localStorage.getItem('cardNumber');
-const date = localStorage.getItem('date');
-
 const products = [
   {
     name: 'Helping Hands',
@@ -21,9 +15,9 @@ const products = [
 
 const payments = [
   { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: `${cardName}` },
-  { name: 'Card number', detail: `${cardNumber}` },
-  { name: 'Expiry date', detail: `${date}` },
+  { name: 'Card holder', detail: localStorage.getItem('cardName') },
+  { name: 'Card number', detail: localStorage.getItem('cardNumber') },
+  { name: 'Expiry date', detail: localStorage.getItem('date') },
 ];
 
 export default function Review() {
@@ -36,14 +30,14 @@ export default function Review() {
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
             <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">₹{donationAmount}</Typography>
+            <Typography variant="body2">₹{localStorage.getItem("donationAmount")}</Typography>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700, fontFamily: "sans-serif !important" }}>
-          ₹{donationAmount}
+          ₹{localStorage.getItem("donationAmount")}
           </Typography>
         </ListItem>
       </List>
@@ -53,16 +47,38 @@ export default function Review() {
             Payment details
           </div>
           <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
+          <React.Fragment key={0}>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
+                  <Typography gutterBottom>{"Card Type"}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{"Visa"}</Typography>
                 </Grid>
               </React.Fragment>
-            ))}
+              <React.Fragment key={1}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{"Name"}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{localStorage.getItem("cardName")}</Typography>
+                </Grid>
+              </React.Fragment>
+              <React.Fragment key={2}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{"Card Number"}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{localStorage.getItem("cardNumber")}</Typography>
+                </Grid>
+              </React.Fragment>
+              <React.Fragment key={3}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{"Expiry"}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{localStorage.getItem("date")}</Typography>
+                </Grid>
+              </React.Fragment>
           </Grid>
         </Grid>
       </Grid>

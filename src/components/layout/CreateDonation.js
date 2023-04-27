@@ -15,10 +15,31 @@ import {AssuredWorkload, Person } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import NotAllowed from './NotAllowed';
+
 
 const theme = createTheme();
 
 function App() {
+  const [posted,setPosted]=useState(false)
+useEffect(() => {
+  const func=async()=>{
+
+    const response = await axios.get(`http://localhost:5000/api/auth/getspecificuser/${localStorage.getItem("email")}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = response.data;
+    // console.log("ngo is",json)
+    setPosted(json[0].posted)
+  }
+  func()
+  }
+ , [])
+
+
 
   
   const [title, setTitle] = useState("");
@@ -30,6 +51,7 @@ function App() {
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
   
 
   const handleTitleChange = (e) => {
@@ -69,10 +91,13 @@ function App() {
     setLabel(e.target.value);
   };
   
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+
   const navigate = useNavigate()
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("hai bhai")
     axios.post("http://localhost:5000/donationcards/create", {
       
     title: title,
@@ -83,7 +108,8 @@ function App() {
       name: name,
       phone: phone,
       location: location,
-      image: image
+      image: image,
+      email: email
       
      
     })
@@ -104,8 +130,14 @@ function App() {
     console.log(error);
   });
 
-  setTitle("");
-  setDetail("");
+      const response = await fetch(`http://localhost:5000/api/auth/updateuser/${localStorage.getItem("email")}`, {
+        method: 'GET'
+      });
+
+      const json = await response.json();
+      console.log(json)
+      setTitle("");
+      setDetail("");
   setSummary("");
   setLabel("");
   setGoalFund("");
@@ -113,9 +145,24 @@ function App() {
   setPhone("");
   setLocation("");
   setImage("");
-  };
+  setEmail("");
+  setTimeout(() => {
+    toast.success("Donation card created successfully!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    navigate("/");
+  }, 1000);};
 
   return (
+    <>
+    {posted?<NotAllowed/>:
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '97vh' }}>
         <CssBaseline />
@@ -131,7 +178,6 @@ function App() {
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            // height:'90vh'
           }}
           style={{ "minWidth": "100px", "maxWidth": "497px", "maxHeight": "100vh" }}
 
@@ -252,6 +298,16 @@ function App() {
                   id="name"
                 /></Grid>
                 <Grid item xs={12} sm={6}><TextField
+                onChange={handleEmailChange}
+                  margin="normal"
+                  required
+                  value={email}
+                  fullWidth
+                  name="email"
+                  label="Email"
+                  id="email"
+                /></Grid>
+                <Grid item xs={12} sm={6}><TextField
                 onChange={handlePhoneChange}
                   margin="normal"
                   fullWidth
@@ -296,7 +352,8 @@ function App() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </ThemeProvider>}
+    </>
   );
 }
 

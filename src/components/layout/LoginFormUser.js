@@ -77,6 +77,7 @@ function App() {
               theme: "light",
             });
             navigate("/");
+
           }, 1000);
         }
         else{

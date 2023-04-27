@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getArticleData } from "../actions/articles";
 import SocialIconsContainer from "../components/common/SocialIconsContainer";
 
+
 const withRouter = (Component) => {
   const ComponentWithRouterProp = (props) => {
     let params = useParams();
@@ -34,6 +35,7 @@ const ArticleDetail = ({
   useEffect(() => {
     dispatch(getArticleData());
   }, []);
+  
 
   const {postId}=useParams()
   const host = "http://localhost:5000"
@@ -78,6 +80,9 @@ const ArticleDetail = ({
 
   }, [])
 
+  
+
+
   if (loading) {
     return (
       <div className="d-flex align-items-center justify-content-center">
@@ -97,9 +102,6 @@ const ArticleDetail = ({
                     alt=""
                     className="all-round-borders"
                   />
-                  {/* <div className="category-date-container top-left px-4 py-2 rounded-pill position-absolute">
-                    <p></p>
-                  </div> */}
                 </div>
               </div>
               <div className="donate-info my-4">

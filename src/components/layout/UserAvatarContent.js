@@ -9,6 +9,8 @@ import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCar
 function UserAvatarContent({ user }) {
   const navigate = useNavigate()
 
+  const [userData,setUserData]=useState();
+
   const handleLogOut = () => {
     localStorage.clear()
     window.location.reload()
@@ -16,6 +18,23 @@ function UserAvatarContent({ user }) {
   const handleCreate = () => {
     navigate("/createdonation")
   }
+
+  useEffect(()=>{
+
+     const userEmail=localStorage.getItem('email')
+    const sendReq=async ()=>{
+
+      const res=await fetch(`http://localhost:5000/api/auth/getspecific/${userEmail}`)
+         
+      const data=await res.json();
+    
+      setUserData(data)
+       console.log(data)      
+    }
+
+
+    sendReq()
+  },[])
 
   return (
     <div className='UserAvatarContent'>
@@ -46,29 +65,21 @@ function UserAvatarContent({ user }) {
           </MDBCardText>
         </div>
 
-
-
-        {/* <div className="mb-4 pb-2">
-                  <MDBBtn outline floating>
-                    <MDBIcon fab icon="facebook" size="lg" />
-                  </MDBBtn>
-                  <MDBBtn outline floating className="mx-1">
-                    <MDBIcon fab icon="twitter" size="lg" />
-                  </MDBBtn>
-                  <MDBBtn outline floating>
-                    <MDBIcon fab icon="skype" size="lg" />
-                  </MDBBtn>
-                </div> */}
-
         <div className="d-flex justify-content-between text-center mb-2">
           <div>
-            <MDBCardText className="mb-1 h5">8471</MDBCardText>
+            <MDBCardText className="mb-1 h5">₹ {userData?userData.currentFund:0}</MDBCardText>
             <MDBCardText className="medium text-muted mb-0" style={{fontWeight:'bolder'}}>Current Fund</MDBCardText>
           </div>
           <div className="px-3">
-            <MDBCardText className="mb-1 h5">8512</MDBCardText>
+            <MDBCardText className="mb-1 h5">₹ {userData?userData.goalFund:0}</MDBCardText>
             <MDBCardText className="medium text-muted mb-0" style={{fontWeight:'bolder'}}>Goal Fund</MDBCardText>
           </div>
+
+        </div>
+        
+        <div className="px-3" style={{textAlign:"center"}}>
+          <MDBCardText className="mb-1 h5">₹{user?.amount}</MDBCardText>
+          <MDBCardText className="small text-muted mb-0" style={{fontWeight:'bolder'}}>Total Donated</MDBCardText>
         </div>
 
 

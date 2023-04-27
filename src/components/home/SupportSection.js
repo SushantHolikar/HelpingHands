@@ -1,6 +1,22 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const SupportSection = () => {
+    const [funds,setFunds]=useState(0)
+        useEffect(() => {
+            const getBlogProfile = async () => {
+              const response = await fetch(`http://localhost:5000/api/auth/donations-sum`, {
+                method: 'GET'
+              });
+        
+              const json = await response.json();
+              setFunds(json)
+            }
+            getBlogProfile();
+        
+          }, [])  
+    
 
     return (
         <section id="support" className="my-5">
@@ -10,7 +26,7 @@ const SupportSection = () => {
                 <div className="row">
                     <div className="content-container text-center">
                         <h3 className="mb-5">
-                            We have raised <span> &#8377;123450 </span> 
+                            We have raised <span> &#8377;{funds} </span> 
                             as a <span> NGO </span> in total
                         </h3>
 
